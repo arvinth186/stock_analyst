@@ -1,5 +1,3 @@
-crewai
-crewai-tools
 yfinance
 python-dotenv
 groq
@@ -7,3 +5,5 @@ fastapi
 uvicorn
 pydantic
 litellm
+crewai==1.14.4
+crewai-tools==1.14.4
