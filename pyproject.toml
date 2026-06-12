@@ -1,0 +1,30 @@
+[project]
+name = "stock_analyst"
+version = "0.1.0"
+description = "stock_analyst using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools,litellm]>=0.102.0",
+    "fastapi>=0.136.3",
+    "groq>=1.4.0",
+    "python-dotenv>=1.2.2",
+    "streamlit>=1.58.0",
+    "uvicorn>=0.49.0",
+    "yfinance>=1.4.1",
+]
+
+[project.scripts]
+stock_analyst = "stock_analyst.main:run"
+run_crew = "stock_analyst.main:run"
+train = "stock_analyst.main:train"
+replay = "stock_analyst.main:replay"
+test = "stock_analyst.main:test"
+run_with_trigger = "stock_analyst.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
