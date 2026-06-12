@@ -1,54 +1,301 @@
-# StockAnalyst Crew
+# 📈 Stock Analyst AI
 
-Welcome to the StockAnalyst Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+A Multi-Agent AI-powered stock analysis platform built using **CrewAI**, **FastAPI**, **Groq LLM**, **YFinance**, and **Serper Search**.
 
-## Installation
+The system uses multiple specialized AI agents to research financial news, analyze stock fundamentals, assess investment risks, and generate a comprehensive investment brief for any publicly traded company.
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+---
 
-First, if you haven't already, install uv:
+## 🚀 Features
 
-```bash
-pip install uv
+* Multi-Agent Financial Analysis
+* Latest News & Market Sentiment Research
+* Real-Time Stock Data using YFinance
+* Risk Assessment Engine
+* AI Generated Investment Reports
+* FastAPI Backend API
+* Streamlit Frontend
+* Swagger API Documentation
+* Downloadable Investment Reports
+* Deployable on Render
+
+---
+
+## 🏗️ Architecture
+
+```text
+User
+ │
+ ▼
+Streamlit UI
+ │
+ ▼
+FastAPI API
+ │
+ ▼
+CrewAI Multi-Agent System
+ │
+ ├── News Researcher Agent
+ ├── Financial Analyst Agent
+ ├── Risk Assessment Agent
+ └── Report Writer Agent
+ │
+ ▼
+Final Investment Report
 ```
 
-Next, navigate to your project directory and install the dependencies:
+---
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
+## 🤖 Agents
+
+### News Researcher
+
+Responsible for:
+
+* Searching latest company news
+* Market sentiment analysis
+* Earnings reports
+* Analyst opinions
+
+### Financial Analyst
+
+Responsible for:
+
+* Current stock price
+* PE ratio
+* Market capitalization
+* Volume analysis
+* 52-week high/low
+* Price trend analysis
+
+### Risk Assessment Specialist
+
+Responsible for:
+
+* Market risks
+* Company-specific risks
+* Technical risks
+* Macro-economic risks
+
+### Report Writer
+
+Responsible for:
+
+* Executive summary
+* Financial snapshot
+* News highlights
+* Risk assessment
+* Final recommendation
+
+---
+
+## 📂 Project Structure
+
+```text
+stock_analyst/
+│
+├── api/
+│   └── main.py
+│
+├── src/
+│   └── stock_analyst/
+│       ├── config/
+│       │   ├── agents.yaml
+│       │   └── tasks.yaml
+│       │
+│       ├── tools/
+│       │   ├── search_tool.py
+│       │   └── yfinance_tool.py
+│       │
+│       └── crew.py
+│
+├── app.py
+├── requirements.txt
+├── pyproject.toml
+├── README.md
+└── .gitignore
 ```
-### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+---
 
-- Modify `src/stock_analyst/config/agents.yaml` to define your agents
-- Modify `src/stock_analyst/config/tasks.yaml` to define your tasks
-- Modify `src/stock_analyst/crew.py` to add your own logic, tools and specific args
-- Modify `src/stock_analyst/main.py` to add custom inputs for your agents and tasks
+## 🛠️ Tech Stack
 
-## Running the Project
+### Backend
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+* FastAPI
+* CrewAI
+* Python
+
+### AI & LLM
+
+* Groq
+* Llama Models
+
+### Data Sources
+
+* YFinance
+* Serper Search API
+
+### Frontend
+
+* Streamlit
+
+### Deployment
+
+* Render
+
+---
+
+## ⚙️ Installation
+
+### Clone Repository
 
 ```bash
-$ crewai run
+git clone https://github.com/arvinth186/stock_analyst.git
+
+cd stock_analyst
 ```
 
-This command initializes the stock_analyst Crew, assembling the agents and assigning them tasks as defined in your configuration.
+### Create Virtual Environment
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+```bash
+python -m venv venv
+```
 
-## Understanding Your Crew
+### Activate Environment
 
-The stock_analyst Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+Windows:
 
-## Support
+```bash
+venv\Scripts\activate
+```
 
-For support, questions, or feedback regarding the StockAnalyst Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+Linux/Mac:
 
-Let's create wonders together with the power and simplicity of crewAI.
+```bash
+source venv/bin/activate
+```
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+SERPER_API_KEY=your_serper_api_key
+```
+
+---
+
+## ▶️ Run FastAPI Backend
+
+```bash
+uvicorn api.main:app --reload
+```
+
+API Docs:
+
+```text
+http://localhost:8000/docs
+```
+
+---
+
+## ▶️ Run Streamlit Frontend
+
+```bash
+streamlit run app.py
+```
+
+Frontend:
+
+```text
+http://localhost:8501
+```
+
+---
+
+## 📡 API Endpoint
+
+### Analyze Stock
+
+**POST**
+
+```text
+/api/analyze
+```
+
+Request:
+
+```json
+{
+  "company": "Apple",
+  "ticker": "AAPL"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "company": "Apple",
+  "ticker": "AAPL",
+  "report": "Generated Investment Report..."
+}
+```
+
+---
+
+## 📄 Sample Report Sections
+
+The generated investment brief contains:
+
+* Executive Summary
+* Financial Snapshot
+* News & Sentiment
+* Risk Assessment
+* Investment Recommendation
+
+---
+
+## 🌐 Deployment
+
+This project is designed for deployment on Render.
+
+Build Command:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start Command:
+
+```bash
+uvicorn api.main:app --host 0.0.0.0 --port $PORT
+```
+
+---
+
+## ⚠️ Disclaimer
+
+This project is intended for educational and research purposes only.
+
+The generated reports do not constitute financial advice. Always conduct your own research before making investment decisions.
+
+---
+
+## 👨‍💻 Author
+
+Arvinth
+
+GitHub:
+https://github.com/arvinth186
