@@ -2,6 +2,7 @@
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 from src.stock_analyst.crew import StockAnalystCrew
 
@@ -9,6 +10,13 @@ app = FastAPI(
     title="Stock Analyst API"
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 class StockRequest(BaseModel):
     company: str
     ticker: str
